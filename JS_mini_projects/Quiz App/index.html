@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+      body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+
+.quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="question"></div>
+        <div id="options" class="options-container"></div>
+        <button onclick="nextQuestion()">Next Question</button>
+    </div>
+    <script>
+      const quizData = [
+    {
+        question: "What is the capital of France?",
+        options: ["Paris", "Berlin", "Madrid", "Rome"],
+        correctAnswer: "Paris"
+    },
+    {
+        question: "Which programming language is known as the 'mother of all languages'?",
+        options: ["C", "Python", "Java", "Assembly"],
+        correctAnswer: "C"
+    },
+    // Add more questions here
+];
+
+let currentQuestionIndex = 0;
+
+function loadQuestion() {
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+
+    const currentQuestion = quizData[currentQuestionIndex];
+
+    questionElement.innerText = currentQuestion.question;
+    optionsElement.innerHTML = "";
+
+    currentQuestion.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.innerText = option;
+        button.addEventListener("click", () => checkAnswer(option));
+        optionsElement.appendChild(button);
+    });
+}
+
+function checkAnswer(selectedOption) {
+    const currentQuestion = quizData[currentQuestionIndex];
+
+    if (selectedOption === currentQuestion.correctAnswer) {
+        alert("Correct!");
+    } else {
+        alert("Wrong answer. Try again!");
+    }
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizData.length) {
+        loadQuestion();
+    } else {
+        alert("Quiz completed!");
+        currentQuestionIndex = 0;
+        loadQuestion();
+    }
+}
+
+// Initial load
+loadQuestion();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Counter</title>
+    <style>
+      body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+
+.counter-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 48px;
+    color: #3498db;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <h1 id="counter">0</h1>
+        <button onclick="startCounter()">Start Counter</button>
+    </div>
+    <script>
+let counterValue = 0;
+let intervalId;
+
+function startCounter() {
+    intervalId = setInterval(() => {
+        counterValue++;
+        document.getElementById("counter").innerText = counterValue;
+
+        if (counterValue === 10) {
+            clearInterval(intervalId);
+            alert("Counter reached 10!");
+        }
+    }, 1000);
+}
+
+    </script>
+</body>
+</html>

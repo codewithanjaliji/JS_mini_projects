@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+      body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+
+.slider-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:nth-child(2) {
+    right: 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <img id="sliderImage" src="../images/tea10.jpg" alt="Slider Image">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+   <script>
+const images = ["../images/tea11.jpg", "../images/tea12.jpg", "../images/tshirt1.jpg", "../images/watch1.jpg"];
+let currentImageIndex = 0;
+
+function showImage() {
+    const sliderImage = document.getElementById("sliderImage");
+    sliderImage.src = images[currentImageIndex];
+}
+
+function nextSlide() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    showImage();
+}
+
+function prevSlide() {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    showImage();
+}
+
+// Initial load
+showImage();
+
+   </script>
+</body>
+</html>
